@@ -7,6 +7,6 @@ exports.criarObjetoCliente = function (data) {
             type: data.identification.type,
             number: data.identification.number
         },
-        Description: `Usuário da escola de software - ${data.email}`
+        description: `Usuário da escola de software - ${data.email}`
     };
 }

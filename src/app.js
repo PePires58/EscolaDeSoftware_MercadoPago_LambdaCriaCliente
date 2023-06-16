@@ -4,7 +4,6 @@ const criaObjetoClienteService = require('./services/cria-objeto-cliente');
 
 exports.lambdaHandler = async (event, context) => {
 
-    console.log(event);
     const body = JSON.parse(event.Records[0].body);
 
     const objetoCliente = criaObjetoClienteService.criarObjetoCliente(body);
