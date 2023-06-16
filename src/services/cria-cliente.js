@@ -3,7 +3,7 @@ exports.criarCliente = async function (secret, cliente) {
 
     return fetch(urlCriaCliente, {
         method: 'POST',
-        body: cliente,
+        body: JSON.stringify(cliente),
         headers: {
             'Authorization': `Bearer ${secret}`,
             'Content-Type': 'application/json'
