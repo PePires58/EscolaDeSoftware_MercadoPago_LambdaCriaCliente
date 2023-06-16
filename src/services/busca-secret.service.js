@@ -1,7 +1,4 @@
-const AWS = require('aws-sdk');
-const ssm = new AWS.SSM({ apiVersion: '2014-11-06' });
-
-exports.buscaSecret = async function () {
+exports.buscaSecret = async function (ssm) {
     const params = {
         Name: process.env.SecretMercadoPagoPath,
         WithDecryption: process.env.SecretMercadoPagoUseEncryption === 'true'
