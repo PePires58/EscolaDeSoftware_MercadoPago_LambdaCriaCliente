@@ -1,6 +1,3 @@
-const AWS = require('aws-sdk');
-const ssm = new AWS.SSM({ apiVersion: '2014-11-06' });
-
 const criaClienteService = require('./services/cria-cliente');
 const buscaSegredoService = require('./services/busca-secret.service');
 const criaObjetoClienteService = require('./services/cria-objeto-cliente');
@@ -11,9 +8,9 @@ exports.lambdaHandler = async (event, context) => {
     const body = JSON.parse(event.Records[0].body);
 
     const objetoCliente = criaObjetoClienteService.criarObjetoCliente(body);
-    const segredo = await buscaSegredoService.buscaSecret(ssm);
+    const segredo = await buscaSegredoService.buscaSecret();
 
-    await criaClienteService.criarCliente(segredo, objetoCliente)
+    await criaClienteService.criarCliente(segredo.Parameter.Value, objetoCliente)
         .then((response) => {
             console.log('response');
             console.log(response);
