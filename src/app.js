@@ -10,7 +10,7 @@ exports.lambdaHandler = async (event, context) => {
     const body = JSON.parse(event.Records[0].body);
 
     const objetoCliente = criaObjetoClienteService.criarObjetoCliente(body);
-    const segredo = await buscaSegredo.buscaSecret(ssm);
+    const segredo = await buscaSegredoService.buscaSecret(ssm);
 
     await criaClienteService.criarCliente(segredo, objetoCliente)
         .then((response) => {
