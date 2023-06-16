@@ -27,6 +27,7 @@ Resources:
       Timeout: 3
       Policies:
         - AmazonSSMReadOnlyAccess
+        - AWSLambdaSQSQueueExecutionRole
       Environment:
         Variables:
           BaseUrlMercadoPago: !Ref BaseUrlMercadoPago
