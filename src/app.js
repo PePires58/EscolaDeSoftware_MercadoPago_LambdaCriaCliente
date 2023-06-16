@@ -11,8 +11,6 @@ exports.lambdaHandler = async (event, context) => {
 
     await criaClienteService.criarCliente(segredo.Parameter.Value, objetoCliente)
         .then(async (response) => {
-            console.log('response');
-            console.log(response);
             if (response.ok) {
                 console.log(await response.json());
             }
