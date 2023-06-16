@@ -3,6 +3,7 @@
     "Environment": "dev",
     "BaseUrlMercadoPago": "https://api.mercadopago.com",
     "SecretMercadoPagoPath": "/escoladesoftware/dev/mercadopagokey",
-    "SecretMercadoPagoUseEncryption": "false"
+    "SecretMercadoPagoUseEncryption": "false",
+    "UserTableName": "tbes_usuarios_dev"
   }
 }
