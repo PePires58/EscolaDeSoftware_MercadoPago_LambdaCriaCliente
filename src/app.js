@@ -10,11 +10,11 @@ exports.lambdaHandler = async (event, context) => {
     const segredo = await buscaSegredoService.buscaSecret();
 
     await criaClienteService.criarCliente(segredo.Parameter.Value, objetoCliente)
-        .then((response) => {
+        .then(async (response) => {
             console.log('response');
             console.log(response);
             if (response.ok) {
-                response.json()
+                console.log(await response.json());
             }
         })
         .then((data) => {
