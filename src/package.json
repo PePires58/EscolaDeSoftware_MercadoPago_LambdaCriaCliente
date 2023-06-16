@@ -1,8 +1,8 @@
 {
-  "name": "escoladesoftware-mercadopago-lambdalistaplanos",
+  "name": "escoladesoftware-mercadopago-lambdacriacliente",
   "version": "1.0.0",
-  "description": "contém uma lambda que lista os planos disponiveis no mercado pago",
-  "repository": "https://github.com/PePires58/EscolaDeSoftware_MercadoPago_LambdaListaPlanos",
+  "description": "contém uma lambda que cria um cliente no mercado pago",
+  "repository": "https://github.com/PePires58/EscolaDeSoftware_MercadoPago_LambdaCriaCliente",
   "main": "app.js",
   "scripts": {
     "test": "mocha './specs/*.spec.js'"

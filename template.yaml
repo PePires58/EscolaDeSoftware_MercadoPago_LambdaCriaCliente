@@ -16,11 +16,11 @@ Parameters:
     Type: String
 
 Resources:  
-  MercadoPagoLambdaCriaClienteFn:
+  MercadoPagoLambdaCriarClienteFn:
     Type: AWS::Serverless::Function
     Properties:
       Description: cria um cliente no mercado pago
-      FunctionName: !Join ["_", [!Ref Environment, "escoladesoftware-mercadopago-lambdacriaclientefn"]]
+      FunctionName: !Join ["_", [!Ref Environment, "escoladesoftware-mercadopago-lambdacriarclientefn"]]
       Handler: app.lambdaHandler
       CodeUri: src/
       Runtime: nodejs18.x
@@ -41,10 +41,10 @@ Resources:
       - Key: Servico
         Value: Lambda
 
-  MercadoPagoLambdaCriaClienteFnLogGroup: 
+  MercadoPagoLambdaCriarClienteFnLogGroup: 
     Type: AWS::Logs::LogGroup
     Properties: 
-      LogGroupName: !Join ["", ["/aws/lambda/", !Ref Environment, "_escoladesoftware-mercadopago-lambdacriaclientefn"]]
+      LogGroupName: !Join ["", ["/aws/lambda/", !Ref Environment, "_escoladesoftware-mercadopago-lambdacriarclientefn"]]
       RetentionInDays: 3
       Tags: 
         - Key: Ambiente
