@@ -17,6 +17,9 @@ Parameters:
   UserTableName:
     Description: Tabela do usuario
     Type: String
+  NomeFilaSqs:
+    Description: Nome Fila SQS
+    Type: Stirng
 
 Resources:  
   MercadoPagoLambdaCriarClienteFn:
@@ -57,3 +60,11 @@ Resources:
           Value: MercadoPago
         - Key: Servico
           Value: LogGroup
+
+  LambdaCriaClienteEventSourceMapping:
+    Type: AWS::Lambda::EventSourceMapping
+    Properties:
+      BatchSize: 10
+      Enabled: true
+      EventSourceArn: !Sub "arn:aws:sqs:${AWS::Region}:${AWS::AccountId}:"
+      FunctionName: !GetAtt MercadoPagoLambdaCriarClienteFn.Arn

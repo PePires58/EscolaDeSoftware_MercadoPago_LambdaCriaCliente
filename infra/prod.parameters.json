@@ -4,6 +4,7 @@
     "BaseUrlMercadoPago": "https://api.mercadopago.com",
     "SecretMercadoPagoPath": "/escoladesoftware/prod/mercadopagokey",
     "SecretMercadoPagoUseEncryption": "true",
-    "UserTableName": "tbes_usuarios"
+    "UserTableName": "tbes_usuarios",
+    "NomeFilaSqs": "sqs_mercadopago_criacliente"
   }
 }
