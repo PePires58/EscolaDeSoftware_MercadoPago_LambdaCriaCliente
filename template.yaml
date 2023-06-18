@@ -68,3 +68,4 @@ Resources:
       Enabled: true
       EventSourceArn: !Sub "arn:aws:sqs:${AWS::Region}:${AWS::AccountId}:"
       FunctionName: !GetAtt MercadoPagoLambdaCriarClienteFn.Arn
+      
