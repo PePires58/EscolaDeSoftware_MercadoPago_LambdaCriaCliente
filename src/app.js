@@ -30,7 +30,9 @@ exports.lambdaHandler = async (event, context) => {
 
         if (idClienteMercadoPago) {
             const comandoPutItem = criaComandoService.criaComandoUpdate(body.email, idClienteMercadoPago);
-            await atualizaClienteService.atualizarCliente(comandoPutItem);
+            const resultUpdate = await atualizaClienteService.atualizarCliente(comandoPutItem);
+
+            console.log(resultUpdate);
         }
     }
     catch (error) {
