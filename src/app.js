@@ -6,26 +6,31 @@ const atualizaClienteService = require('./services/atualizar-cliente.service');
 
 exports.lambdaHandler = async (event, context) => {
 
-    const body = JSON.parse(event.Records[0].body);
+    try {
+        const body = JSON.parse(event.Records[0].body);
 
-    const objetoCliente = criaObjetoClienteService.criarObjetoCliente(body);
-    const segredo = await buscaSegredoService.buscaSecret();
+        const objetoCliente = criaObjetoClienteService.criarObjetoCliente(body);
+        const segredo = await buscaSegredoService.buscaSecret();
 
-    let idClienteMercadoPago = '';
-    await criaClienteService.criarCliente(segredo.Parameter.Value, objetoCliente)
-        .then(async (response) => {
-            if (response.ok) {
-                const clienteMercadoPago = await response.json();
-                idClienteMercadoPago = clienteMercadoPago.id.split('-')[0];
-            }
-        })
-        .catch((error) => {
-            console.log('error');
-            console.log(error);
-        })
+        let idClienteMercadoPago = '';
+        await criaClienteService.criarCliente(segredo.Parameter.Value, objetoCliente)
+            .then(async (response) => {
+                if (response.ok) {
+                    const clienteMercadoPago = await response.json();
+                    idClienteMercadoPago = clienteMercadoPago.id.split('-')[0];
+                }
+            })
+            .catch((error) => {
+                console.log('error');
+                console.log(error);
+            })
 
-    if (idClienteMercadoPago) {
-        const comandoPutItem = criaComandoService.criaComandoUpdate(body.email, idClienteMercadoPago);
-        await atualizaClienteService.atualizarCliente(comandoPutItem);
+        if (idClienteMercadoPago) {
+            const comandoPutItem = criaComandoService.criaComandoUpdate(body.email, idClienteMercadoPago);
+            await atualizaClienteService.atualizarCliente(comandoPutItem);
+        }
+    }
+    catch (error) {
+        console.log(error);
     }
 }
