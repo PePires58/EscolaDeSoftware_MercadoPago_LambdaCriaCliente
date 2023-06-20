@@ -1,4 +1,4 @@
-exports.criaComandoUpdate = function (email, mercadoPagoId) {
+exports.criaComandoUpdate = function (email, clienteMercadoPago) {
     return {
         Key: {
             "email": {
@@ -6,10 +6,11 @@ exports.criaComandoUpdate = function (email, mercadoPagoId) {
             }
         },
         ExpressionAttributeValues: {
-            ":mercado_pago_id": { S: mercadoPagoId },
+            ":mercadopag_id_cliente": { S: clienteMercadoPago.id },
+            ":mercadopag_id_pagador": { S: clienteMercadoPago.id.split('-')[0] },
             ":email": { S: email }
         },
-        UpdateExpression: "SET mercado_pago_id = :mercado_pago_id",
+        UpdateExpression: "SET mercadopag_id_cliente = :mercadopag_id_cliente, mercadopag_id_pagador = :mercadopag_id_pagador",
         ConditionExpression: "attribute_exists(email) AND email = :email"
     };
 }
