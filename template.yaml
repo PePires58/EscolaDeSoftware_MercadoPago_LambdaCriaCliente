@@ -17,6 +17,9 @@ Parameters:
   UserTableName:
     Description: Tabela do usuario
     Type: String
+  NomeFilaSqs:
+    Description: Nome Fila SQS
+    Type: String
 
 Resources:  
   MercadoPagoLambdaCriarClienteFn:
@@ -31,6 +34,7 @@ Resources:
       Policies:
         - AmazonSSMReadOnlyAccess
         - AWSLambdaSQSQueueExecutionRole
+        - AmazonDynamoDBFullAccess
       Environment:
         Variables:
           BaseUrlMercadoPago: !Ref BaseUrlMercadoPago
@@ -57,3 +61,11 @@ Resources:
           Value: MercadoPago
         - Key: Servico
           Value: LogGroup
+
+  LambdaCriaClienteEventSourceMapping:
+    Type: AWS::Lambda::EventSourceMapping
+    Properties:
+      BatchSize: 10
+      Enabled: true
+      EventSourceArn: !Sub "arn:aws:sqs:${AWS::Region}:${AWS::AccountId}:${NomeFilaSqs}"
+      FunctionName: !GetAtt MercadoPagoLambdaCriarClienteFn.Arn
