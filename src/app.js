@@ -19,9 +19,12 @@ exports.lambdaHandler = async (event, context) => {
                     const clienteMercadoPago = await response.json();
                     idClienteMercadoPago = clienteMercadoPago.id.split('-')[0];
                 }
+                else {
+                    const error = await response.json();
+                    console.log(error);
+                }
             })
             .catch((error) => {
-                console.log('error');
                 console.log(error);
             })
 
