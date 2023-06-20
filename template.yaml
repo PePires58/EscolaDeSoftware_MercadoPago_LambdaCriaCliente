@@ -34,6 +34,7 @@ Resources:
       Policies:
         - AmazonSSMReadOnlyAccess
         - AWSLambdaSQSQueueExecutionRole
+        - AmazonDynamoDBFullAccess
       Environment:
         Variables:
           BaseUrlMercadoPago: !Ref BaseUrlMercadoPago
